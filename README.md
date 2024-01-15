@@ -3,7 +3,17 @@
 share target experiments / PWA - probably not working
 
 Currently based on https://github.com/w3c/web-share-target/tree/main/demos
-NOT working via ngrok, proven by serving w3c dir with demo python web server and ngrok :-( w3c demo works fine with a regular https server.
+NOT working via ngrok.
+w3c/web-share-target can work by serving w3c dir with demo python web server and ngrok.
+NOTE NOTE to speed up install, try opening <a href="manifest.json">manifest.json</a> and <a href="sw.js">sw.js</a> manually (maybe required for ngrok with abuse protection?)
+
+
+    echo Issue:
+    echo        ngrok http 7878
+    py -3 -m http.server 7878
+
+TODO I think above is incorrect. edit html (to make clear source) and retest with ngrok
+TODO try this demo with same URL pwa.html INSTEAD of submit URL.
 
 See:
 

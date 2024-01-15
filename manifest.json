@@ -14,10 +14,10 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/pwa.html",
+  "start_url": "pwa.html",
   "display": "standalone",
   "share_target": {
-    "url_template": "sumbit?oldapi=true&title={title}&text={text}&url={url}",
+    "url_template": "submit?oldapi=true&title={title}&text={text}&url={url}",
     "action": "submit",
     "params": {
       "title": "title",
