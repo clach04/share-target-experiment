@@ -3,7 +3,7 @@
 share target experiments / PWA - probably not working
 
 Currently based on https://github.com/w3c/web-share-target/tree/main/demos
-not working via ngrok
+NOT working via ngrok, proven by serving w3c dir with demo python web server and ngrok :-( w3c demo works fine with a regular https server.
 
 See:
 
