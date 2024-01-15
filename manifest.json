@@ -1,30 +1,39 @@
 {
   "name": "clach04 Pile Of Poop PWA",
   "short_name": "Pile Of Poop PWA",
-  "description": "Progressive Web App (PWA) demo/sample with a Python WSGI backend",
-  "icons": [
-    {
-      "src": "icons/icon-32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "pwa.html",
+  "start_url": "sharetarget.html",
   "display": "standalone",
   "share_target": {
-    "url_template": "submit?oldapi=true&title={title}&text={text}&url={url}",
-    "action": "submit",
+    "url_template": "sharetarget.html?oldapi=true&title={title}&text={text}&url={url}",
+    "action": "sharetarget.html",
     "params": {
       "title": "title",
       "text": "text",
       "url": "url"
     }
   },
+  "icons": [{
+    "src": "images/icon-16.png",
+    "sizes": "16x16"
+  }, {
+    "src": "images/icon-32.png",
+    "sizes": "32x32"
+  }, {
+    "src": "images/icon-48.png",
+    "sizes": "48x48"
+  }, {
+    "src": "images/icon-128.png",
+    "sizes": "128x128"
+  }, {
+    "src": "images/icon-180.png",
+    "sizes": "180x180"
+  }, {
+    "src": "images/icon-256.png",
+    "sizes": "256x256"
+  }, {
+    "src": "images/icon-512.png",
+    "sizes": "512x512"
+  }],
   "theme_color": "#B12A34",
   "background_color": "#916b49"
 }
