@@ -12,7 +12,10 @@ NOTE NOTE to speed up install, try opening <a href="manifest.json">manifest.json
     echo        ngrok http 7878
     py -3 -m http.server 7878
 
-TODO I think above is incorrect. edit html (to make clear source) and retest with ngrok
+  * http.server works for w3c demo
+  * Caddy2 works for w3c demo
+  * It does NOT work for w3c demo when using this wsgi debug server :-(
+
 TODO try this demo with same URL pwa.html INSTEAD of submit URL.
 
 See:

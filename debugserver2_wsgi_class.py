@@ -254,17 +254,27 @@ class MySimpleApp:
                 print('check if we have %r file locally to serve' % filename)
             if os.path.exists(filename):
                 content_type, result = serve_file(filename)
-                print(content_type)
-                if result:
-                    if content_type:
-                        headers = [('Content-type', content_type)]
-                    if 1:
-                        headers.append(('Content-Length', str(len(result[0]))))
-                        #headers.append(('Last-Modified', 'Sun, 01 Jan 2023 18:53:39 GMT'))  # this is the format expected
-                        headers.append(('Last-Modified', current_timestamp_for_header()))  # many clients will cache
-                        # TODO 'Date'? bjoern does NOT include this by default where as wsgiref does
-
-                print('serving static file %r' % path_info)
+                print('About to serve static file %r as %r' % (path_info, content_type))
+                only_date_and_server = True
+                if only_date_and_server:
+                    headers = [('Server', 'SimpleHTTP/0.6 Python/3.12.1')]  # this is a lie!
+                    headers.append(('Date', current_timestamp_for_header()))  # many clients will cache
+                    #headers.append(('Last-Modified', current_timestamp_for_header()))  # many clients will cache
+                    #NOTE Content-Length is somehow being sent, probably by server
+                else:
+                    if result:
+                        if content_type:
+                            headers = [('Content-type', content_type)]
+                        # Do not sent back length or type, looking looks  like Chrome is not trusting this? :-(
+                        # seems to work fine with;  py -3 -m http.server 7878
+                        # which only returns date and server:
+                        #   Date: Mon, 15 Jan 2024 22:50:48 GMT
+                        #   Server: SimpleHTTP/0.6 Python/3.12.1
+                        if 1:
+                            headers.append(('Content-Length', str(len(result[0]))))
+                            #headers.append(('Last-Modified', 'Sun, 01 Jan 2023 18:53:39 GMT'))  # this is the format expected
+                            headers.append(('Last-Modified', current_timestamp_for_header()))  # many clients will cache
+                            # TODO 'Date'? bjoern does NOT include this by default where as wsgiref does
             else:
                 # return 404 by default
                 return not_found(environ, start_response)
