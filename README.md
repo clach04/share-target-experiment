@@ -2,7 +2,8 @@
 
 share target experiments / PWA - probably not working
 
-Currently based on https://w3c.github.io/web-share/demos/share-files.html
+Currently based on https://github.com/w3c/web-share-target/tree/main/demos
+not working via ngrok
 
 See:
 
