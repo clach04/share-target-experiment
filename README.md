@@ -2,6 +2,9 @@
 
 share target experiments / PWA - probably not working
 
+
+Working via Caddy2
+
 Currently based on https://github.com/w3c/web-share-target/tree/main/demos
 NOT working via ngrok.
 w3c/web-share-target can work by serving w3c dir with demo python web server and ngrok.
