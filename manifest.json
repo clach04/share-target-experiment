@@ -1,11 +1,11 @@
 {
   "name": "clach04 Pile Of Poop PWA",
   "short_name": "Pile Of Poop PWA",
-  "start_url": "sharetarget.html",
+  "start_url": "pwa.html",
   "display": "standalone",
   "share_target": {
-    "url_template": "sharetarget.html?oldapi=true&title={title}&text={text}&url={url}",
-    "action": "sharetarget.html",
+    "url_template": "pwa.html?oldapi=true&title={title}&text={text}&url={url}",
+    "action": "pwa.html",
     "method": "GET",
     "params": {
       "title": "title",
