@@ -6,6 +6,7 @@
   "share_target": {
     "url_template": "sharetarget.html?oldapi=true&title={title}&text={text}&url={url}",
     "action": "sharetarget.html",
+    "method": "GET",
     "params": {
       "title": "title",
       "text": "text",
