@@ -2,6 +2,7 @@
 
 share target experiments / PWA - probably not working
 
+[How to install a PWA.](https://www.cdc.gov/niosh/mining/content/hearingloss/installPWA.html)
 
 Working via Caddy2
 
