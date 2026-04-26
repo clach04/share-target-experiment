@@ -55,10 +55,12 @@ def force_bool(in_bool):
         return True
 
 ALWAYS_RETURN_404 = True
-ALWAYS_RETURN_404 = force_bool(os.environ.get('ALWAYS_RETURN_404', True))
+#ALWAYS_RETURN_404 = force_bool(os.environ.get('ALWAYS_RETURN_404', True))
+ALWAYS_RETURN_404 = force_bool(os.environ.get('ALWAYS_RETURN_404', False))
 DEFAULT_SERVER_PORT = 8080
 DEFAULT_SERVER_PORT = 8777
 DEFAULT_SERVER_PORT = 8000
+DEFAULT_SERVER_PORT = 7878
 
 
 log = logging.getLogger(__name__)
