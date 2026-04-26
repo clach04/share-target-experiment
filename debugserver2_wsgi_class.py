@@ -19,11 +19,11 @@ TODO
 """
 
 try:
-    # py2 (and <py3.8)
-    from cgi import parse_qs
-except ImportError:
     # py3
     from urllib.parse import parse_qs
+except ImportError:
+    # py2 (and <py3.8)
+    from cgi import parse_qs
 import os
 try:
     import json
@@ -40,19 +40,9 @@ import time
 from wsgiref.simple_server import make_server
 
 try:
-    import bjoern
+    import anywsgi
 except ImportError:
-    bjoern = None
-
-try:
-    import cheroot  # CherryPy Server https://cheroot.cherrypy.dev/en/latest/pkg/cheroot.wsgi/
-except ImportError:
-    cheroot = None
-
-try:
-    import meinheld  # https://github.com/mopemope/meinheld
-except ImportError:
-    meinheld = None
+    anywsgi = None
 
 
 def force_bool(in_bool):
@@ -289,6 +279,11 @@ class MySimpleApp:
 
 def my_start_server(callable_app):
     print('Python %s on %s' % (sys.version, sys.platform))
+
+    hostname = '0.0.0.0'  # allow any client
+    hostname = ''  # allow any client -   # FIXME use local_ip?
+    # hostname = 'localhost'  # limit to local only
+
     server_port = int(os.environ.get('PORT', DEFAULT_SERVER_PORT))
 
     print("Serving on port %d..." % server_port)
@@ -297,22 +292,16 @@ def my_start_server(callable_app):
     log.info('open : http://%s:%d', local_ip, server_port)
     log.info('Starting server: %r', (local_ip, server_port))
     simple_app = callable_app()
+
+
     # TODO modjy/Jython
-    if bjoern:
-        log.info('Using: bjoern')
-        bjoern.run(simple_app, '', server_port)  # FIXME use local_ip?
-    elif cheroot:
-        # Untested
-        server = cheroot.wsgi.Server(('0.0.0.0', server_port), my_crazy_app)  # '' untested for address
-        server.start()
-    elif meinheld:
-        # Untested, Segmentation fault when serving a file :-(
-        meinheld.server.listen(('0.0.0.0', server_port))  # does not accept ''
-        meinheld.server.run(simple_app)
+    if anywsgi:
+        anywsgi.my_start_server(simple_app, listen_address=hostname, listen_port=server_port)
     else:
         log.info('Using: wsgiref.simple_server')
-        httpd = make_server('', server_port, simple_app)  # FIXME use local_ip?
+        httpd = make_server(hostname, server_port, simple_app)
         httpd.serve_forever()
+
 
 def main(argv=None):
     my_start_server(MySimpleApp)
